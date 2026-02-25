@@ -57,18 +57,23 @@ namespace CapaDatos
 
         public string Guardar(CDProducto prod)
         {
-
             string resul = "";
             SqlConnection conexion = new SqlConnection();
             try
             {
-
                 conexion.ConnectionString = Conexion.Conn;
                 conexion.Open();
                 SqlCommand Cmd = new SqlCommand("spguardar_producto", conexion);
                 Cmd.CommandType = CommandType.StoredProcedure;
 
-                Cmd.Parameters.AddWithValue("@idproducto", SqlDbType.Int).Direction = ParameterDirection.Output;
+                // Configuración correcta del parámetro de salida para el ID generado
+                SqlParameter ParIdproducto = new SqlParameter();
+                ParIdproducto.ParameterName = "@idproducto";
+                ParIdproducto.SqlDbType = SqlDbType.Int;
+                ParIdproducto.Direction = ParameterDirection.Output;
+                Cmd.Parameters.Add(ParIdproducto);
+
+                // Parámetros de entrada desde el objeto prod
                 Cmd.Parameters.AddWithValue("@codigo", prod.Codigo);
                 Cmd.Parameters.AddWithValue("@nombre", prod.Nombre);
                 Cmd.Parameters.AddWithValue("@descripcion", prod.Descripcion);
@@ -80,6 +85,7 @@ namespace CapaDatos
                 Cmd.Parameters.AddWithValue("@estado", prod.Estado);
                 Cmd.Parameters.AddWithValue("@idcategoria", prod.Idcategoria);
 
+                // Ejecución: Si se afecta 1 fila, devolvemos OK
                 resul = Cmd.ExecuteNonQuery() == 1 ? "OK" : "No se pudo insertar el registro";
             }
             catch (Exception ex)
@@ -88,27 +94,25 @@ namespace CapaDatos
             }
             finally
             {
-                if (conexion.State == ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
+                if (conexion.State == ConnectionState.Open) conexion.Close();
             }
             return resul;
         }
+
         public string Editar(CDProducto prod)
         {
-
             string resul = "";
             SqlConnection conexion = new SqlConnection();
             try
             {
-
                 conexion.ConnectionString = Conexion.Conn;
                 conexion.Open();
                 SqlCommand Cmd = new SqlCommand("speditar_producto", conexion);
                 Cmd.CommandType = CommandType.StoredProcedure;
 
-                Cmd.Parameters.AddWithValue("@idproducto", SqlDbType.Int).Direction = ParameterDirection.Output;
+                // IMPORTANTE: Aquí el ID es de entrada para identificar el registro a modificar
+                Cmd.Parameters.AddWithValue("@idproducto", prod.Idproducto);
+
                 Cmd.Parameters.AddWithValue("@codigo", prod.Codigo);
                 Cmd.Parameters.AddWithValue("@nombre", prod.Nombre);
                 Cmd.Parameters.AddWithValue("@descripcion", prod.Descripcion);
@@ -120,7 +124,8 @@ namespace CapaDatos
                 Cmd.Parameters.AddWithValue("@estado", prod.Estado);
                 Cmd.Parameters.AddWithValue("@idcategoria", prod.Idcategoria);
 
-                resul = Cmd.ExecuteNonQuery() == 1 ? "OK" : "No se pudo insertar el registro";
+                // Ejecución: Si se afecta 1 fila, devolvemos OK
+                resul = Cmd.ExecuteNonQuery() == 1 ? "OK" : "No se pudo actualizar el registro";
             }
             catch (Exception ex)
             {
@@ -128,13 +133,11 @@ namespace CapaDatos
             }
             finally
             {
-                if (conexion.State == ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
+                if (conexion.State == ConnectionState.Open) conexion.Close();
             }
             return resul;
         }
+        
         public string Eliminar(CDProducto prod)
         {
             string resul = "";
@@ -163,6 +166,7 @@ namespace CapaDatos
             }
             return resul;
         }
+        
         public DataTable BuscarNombre(CDProducto prod)
         {
             DataTable resul = new DataTable("producto");
@@ -190,6 +194,7 @@ namespace CapaDatos
             }
             return resul;
         }
+        
         public DataTable BuscarCodigo(CDProducto prod)
         {
             DataTable resul = new DataTable("producto");

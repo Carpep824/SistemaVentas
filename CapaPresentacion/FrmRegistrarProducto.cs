@@ -29,16 +29,16 @@ namespace CapaPresentacion
             this.Left = 0;
 
             // Llenar el ComboBox de categorías al iniciar
-            LlenarCategorias();
+            this.CargarCategorias();
         }
 
-        private void LlenarCategorias()
+        private void CargarCategorias()
         {
             try
             {
-                txtidcategoria.DataSource = CNCategoria.Listar();
-                txtidcategoria.DisplayMember = "nombre";
-                txtidcategoria.ValueMember = "idcategoria";
+                cboidcategoria.DataSource = CNCategoria.Listar();
+                cboidcategoria.ValueMember = "idcategoria";
+                cboidcategoria.DisplayMember = "descripcion";
             }
             catch (Exception ex)
             {
@@ -48,76 +48,64 @@ namespace CapaPresentacion
 
         private void btnguardar_Click_1(object sender, EventArgs e)
         {
-            // Determinar el estado basándose en los RadioButtons
-            string estado = rbtnactivo.Checked ? "ACTIVO" : "INACTIVO";
+            string estado = rbactivo.Checked ? "ACTIVO" : "INACTIVO";
 
             try
             {
-                // Validación de campos obligatorios
-                if (string.IsNullOrWhiteSpace(this.txtnombre.Text) || string.IsNullOrWhiteSpace(this.txtcodigo.Text))
+                if (this.txtcodigo.Text == string.Empty || this.txtnombre.Text == string.Empty)
                 {
-                    MessageBox.Show("Ingrese los datos del producto", "Sistema de Ventas",
+                    MessageBox.Show("Ingrese los datos del producto", "sistema de ventas",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
                 }
-
-                if (this.Insert)
+                else
                 {
-                    string rpta = CNProducto.Guardar(
-                        this.txtcodigo.Text.Trim(),
-                        this.txtnombre.Text.Trim(),
-                        this.txtdescripcion.Text.Trim(),
-                        dtpfecha_ingreso.Value,
-                        dtpfecha_vencimiento.Value,
-                        Convert.ToDouble(this.txtprecio_compra.Text),
-                        Convert.ToDouble(this.txtprecio_venta.Text),
-                        Convert.ToInt32(this.txtstock.Text),
-                        estado,
-                        Convert.ToInt32(this.txtidcategoria.SelectedValue)
-                    );
+                    if (this.Insert == true)
+                    {
+                        CNProducto.Guardar(this.txtcodigo.Text,
+                                            this.txtnombre.Text,
+                                            this.txtdescripcion.Text,
+                                            this.dtfechaingreso.Value,
+                                            this.dtfechavencimiento.Value,
+                                            Convert.ToDouble(this.txtpreciocompra.Text),
+                                            Convert.ToDouble(this.txtprecioventa.Text),
+                                            Convert.ToInt32(this.txtcantidad.Text),
+                                            estado,
+                                            Convert.ToInt32(this.cboidcategoria.SelectedValue));
+                        MessageBox.Show("PRODUCTO REGISTRADO CORRECTAMENTE", "sistema de ventas",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (this.Edit == true)
+                    {
 
-                    if (rpta.Equals("OK"))
-                    {
-                        MessageBox.Show("Guardado con éxito");
+                        CNProducto.Editar(Convert.ToInt32(this.txtidproducto.Text),
+                                                        this.txtcodigo.Text,
+                                                        this.txtnombre.Text,
+                                                        this.txtdescripcion.Text,
+                                                        this.dtfechaingreso.Value,
+                                                        this.dtfechavencimiento.Value,
+                                                        Convert.ToDouble(this.txtpreciocompra.Text),
+                                                        Convert.ToDouble(this.txtprecioventa.Text),
+                                                        Convert.ToInt32(this.txtcantidad.Text),
+                                                        estado,
+                                                        Convert.ToInt32(this.cboidcategoria.SelectedValue));
+                        MessageBox.Show("Producto editado correctamente", "sistema de ventas",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else
-                    {
-                        MessageBox.Show("Error al guardar: " + rpta);
-                    }
+
+                    this.Insert = false;
+                    this.Edit = false;
+
+                    FrmListadoProducto form = new FrmListadoProducto();
+                    form.Show();
+                    this.Hide();
                 }
-                else if (this.Edit)
-                {
-                    string rpta = CNProducto.Editar(
-                        Convert.ToInt32(this.txtidproducto.Text),
-                        this.txtcodigo.Text.Trim(),
-                        this.txtnombre.Text.Trim(),
-                        this.txtdescripcion.Text.Trim(),
-                        dtpfecha_ingreso.Value,
-                        dtpfecha_vencimiento.Value,
-                        Convert.ToDouble(this.txtprecio_compra.Text),
-                        Convert.ToDouble(this.txtprecio_venta.Text),
-                        Convert.ToInt32(this.txtstock.Text),
-                        estado,
-                        Convert.ToInt32(this.txtidcategoria.SelectedValue)
-                    );
-
-                    if (rpta.Equals("OK"))
-                    {
-                        MessageBox.Show("Producto editado correctamente", "Sistema de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-
-                // Finalizar y regresar al listado
-                FinalizarProceso();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: Verifique que los precios y el stock sean números válidos.\n\n" + ex.Message);
+                MessageBox.Show(ex.Message + ex.StackTrace);
             }
-        
-            
         }
-
+        
         private void FinalizarProceso()
         {
             this.Insert = false;
@@ -131,7 +119,7 @@ namespace CapaPresentacion
         {
             FrmListadoProducto form = new FrmListadoProducto();
             form.Show();
-            this.Close();
+            this.Hide();
         }
 
     }

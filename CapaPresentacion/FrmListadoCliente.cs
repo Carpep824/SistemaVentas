@@ -14,6 +14,9 @@ namespace CapaPresentacion
 {
     public partial class FrmListadoCliente: Form
     {
+        public bool Insert = false;
+        public bool Edit = false;
+
         public FrmListadoCliente()
         {
             InitializeComponent();
@@ -45,11 +48,6 @@ namespace CapaPresentacion
             this.dlistado.DataSource = CNCliente.BuscarDni(this.txtbuscar.Text);
         }
 
-
-
-
-
-
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -57,7 +55,7 @@ namespace CapaPresentacion
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)

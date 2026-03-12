@@ -31,10 +31,10 @@
             this.txtidproducto = new System.Windows.Forms.TextBox();
             this.btncancelar = new System.Windows.Forms.Button();
             this.btnguardar = new System.Windows.Forms.Button();
-            this.rbtninactivo = new System.Windows.Forms.RadioButton();
-            this.rbtnactivo = new System.Windows.Forms.RadioButton();
-            this.txtprecio_venta = new System.Windows.Forms.TextBox();
-            this.txtprecio_compra = new System.Windows.Forms.TextBox();
+            this.rbinactivo = new System.Windows.Forms.RadioButton();
+            this.rbactivo = new System.Windows.Forms.RadioButton();
+            this.txtprecioventa = new System.Windows.Forms.TextBox();
+            this.txtpreciocompra = new System.Windows.Forms.TextBox();
             this.txtdescripcion = new System.Windows.Forms.TextBox();
             this.txtcodigo = new System.Windows.Forms.TextBox();
             this.txtnombre = new System.Windows.Forms.TextBox();
@@ -49,11 +49,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.dtpfecha_vencimiento = new System.Windows.Forms.DateTimePicker();
-            this.dtpfecha_ingreso = new System.Windows.Forms.DateTimePicker();
-            this.txtstock = new System.Windows.Forms.NumericUpDown();
-            this.txtidcategoria = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.txtstock)).BeginInit();
+            this.dtfechavencimiento = new System.Windows.Forms.DateTimePicker();
+            this.dtfechaingreso = new System.Windows.Forms.DateTimePicker();
+            this.cboidcategoria = new System.Windows.Forms.ComboBox();
+            this.txtcantidad = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtidproducto
@@ -84,41 +83,41 @@
             this.btnguardar.UseVisualStyleBackColor = true;
             this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click_1);
             // 
-            // rbtninactivo
+            // rbinactivo
             // 
-            this.rbtninactivo.AutoSize = true;
-            this.rbtninactivo.Location = new System.Drawing.Point(603, 317);
-            this.rbtninactivo.Name = "rbtninactivo";
-            this.rbtninactivo.Size = new System.Drawing.Size(74, 20);
-            this.rbtninactivo.TabIndex = 30;
-            this.rbtninactivo.TabStop = true;
-            this.rbtninactivo.Text = "Inactivo";
-            this.rbtninactivo.UseVisualStyleBackColor = true;
+            this.rbinactivo.AutoSize = true;
+            this.rbinactivo.Location = new System.Drawing.Point(603, 317);
+            this.rbinactivo.Name = "rbinactivo";
+            this.rbinactivo.Size = new System.Drawing.Size(74, 20);
+            this.rbinactivo.TabIndex = 30;
+            this.rbinactivo.TabStop = true;
+            this.rbinactivo.Text = "Inactivo";
+            this.rbinactivo.UseVisualStyleBackColor = true;
             // 
-            // rbtnactivo
+            // rbactivo
             // 
-            this.rbtnactivo.AutoSize = true;
-            this.rbtnactivo.Location = new System.Drawing.Point(493, 317);
-            this.rbtnactivo.Name = "rbtnactivo";
-            this.rbtnactivo.Size = new System.Drawing.Size(65, 20);
-            this.rbtnactivo.TabIndex = 29;
-            this.rbtnactivo.TabStop = true;
-            this.rbtnactivo.Text = "Activo";
-            this.rbtnactivo.UseVisualStyleBackColor = true;
+            this.rbactivo.AutoSize = true;
+            this.rbactivo.Location = new System.Drawing.Point(493, 317);
+            this.rbactivo.Name = "rbactivo";
+            this.rbactivo.Size = new System.Drawing.Size(65, 20);
+            this.rbactivo.TabIndex = 29;
+            this.rbactivo.TabStop = true;
+            this.rbactivo.Text = "Activo";
+            this.rbactivo.UseVisualStyleBackColor = true;
             // 
-            // txtprecio_venta
+            // txtprecioventa
             // 
-            this.txtprecio_venta.Location = new System.Drawing.Point(493, 193);
-            this.txtprecio_venta.Name = "txtprecio_venta";
-            this.txtprecio_venta.Size = new System.Drawing.Size(271, 22);
-            this.txtprecio_venta.TabIndex = 28;
+            this.txtprecioventa.Location = new System.Drawing.Point(493, 193);
+            this.txtprecioventa.Name = "txtprecioventa";
+            this.txtprecioventa.Size = new System.Drawing.Size(271, 22);
+            this.txtprecioventa.TabIndex = 28;
             // 
-            // txtprecio_compra
+            // txtpreciocompra
             // 
-            this.txtprecio_compra.Location = new System.Drawing.Point(493, 130);
-            this.txtprecio_compra.Name = "txtprecio_compra";
-            this.txtprecio_compra.Size = new System.Drawing.Size(271, 22);
-            this.txtprecio_compra.TabIndex = 27;
+            this.txtpreciocompra.Location = new System.Drawing.Point(493, 130);
+            this.txtpreciocompra.Name = "txtpreciocompra";
+            this.txtpreciocompra.Size = new System.Drawing.Size(271, 22);
+            this.txtpreciocompra.TabIndex = 27;
             // 
             // txtdescripcion
             // 
@@ -229,9 +228,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(490, 234);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 16);
+            this.label10.Size = new System.Drawing.Size(61, 16);
             this.label10.TabIndex = 38;
-            this.label10.Text = "Stock";
+            this.label10.Text = "Cantidad";
             // 
             // label11
             // 
@@ -242,44 +241,46 @@
             this.label11.TabIndex = 41;
             this.label11.Text = "Categoria";
             // 
-            // dtpfecha_vencimiento
+            // dtfechavencimiento
             // 
-            this.dtpfecha_vencimiento.Location = new System.Drawing.Point(40, 383);
-            this.dtpfecha_vencimiento.Name = "dtpfecha_vencimiento";
-            this.dtpfecha_vencimiento.Size = new System.Drawing.Size(271, 22);
-            this.dtpfecha_vencimiento.TabIndex = 42;
+            this.dtfechavencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtfechavencimiento.Location = new System.Drawing.Point(40, 383);
+            this.dtfechavencimiento.Name = "dtfechavencimiento";
+            this.dtfechavencimiento.Size = new System.Drawing.Size(109, 22);
+            this.dtfechavencimiento.TabIndex = 42;
             // 
-            // dtpfecha_ingreso
+            // dtfechaingreso
             // 
-            this.dtpfecha_ingreso.Location = new System.Drawing.Point(40, 317);
-            this.dtpfecha_ingreso.Name = "dtpfecha_ingreso";
-            this.dtpfecha_ingreso.Size = new System.Drawing.Size(271, 22);
-            this.dtpfecha_ingreso.TabIndex = 43;
+            this.dtfechaingreso.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtfechaingreso.Location = new System.Drawing.Point(40, 317);
+            this.dtfechaingreso.Name = "dtfechaingreso";
+            this.dtfechaingreso.Size = new System.Drawing.Size(109, 22);
+            this.dtfechaingreso.TabIndex = 43;
             // 
-            // txtstock
+            // cboidcategoria
             // 
-            this.txtstock.Location = new System.Drawing.Point(493, 258);
-            this.txtstock.Name = "txtstock";
-            this.txtstock.Size = new System.Drawing.Size(120, 22);
-            this.txtstock.TabIndex = 44;
+            this.cboidcategoria.FormattingEnabled = true;
+            this.cboidcategoria.Location = new System.Drawing.Point(493, 385);
+            this.cboidcategoria.Name = "cboidcategoria";
+            this.cboidcategoria.Size = new System.Drawing.Size(271, 24);
+            this.cboidcategoria.TabIndex = 45;
             // 
-            // txtidcategoria
+            // txtcantidad
             // 
-            this.txtidcategoria.FormattingEnabled = true;
-            this.txtidcategoria.Location = new System.Drawing.Point(493, 385);
-            this.txtidcategoria.Name = "txtidcategoria";
-            this.txtidcategoria.Size = new System.Drawing.Size(271, 24);
-            this.txtidcategoria.TabIndex = 45;
+            this.txtcantidad.Location = new System.Drawing.Point(493, 257);
+            this.txtcantidad.Name = "txtcantidad";
+            this.txtcantidad.Size = new System.Drawing.Size(271, 22);
+            this.txtcantidad.TabIndex = 46;
             // 
             // FrmRegistrarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(851, 475);
-            this.Controls.Add(this.txtidcategoria);
-            this.Controls.Add(this.txtstock);
-            this.Controls.Add(this.dtpfecha_ingreso);
-            this.Controls.Add(this.dtpfecha_vencimiento);
+            this.Controls.Add(this.txtcantidad);
+            this.Controls.Add(this.cboidcategoria);
+            this.Controls.Add(this.dtfechaingreso);
+            this.Controls.Add(this.dtfechavencimiento);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
@@ -287,10 +288,10 @@
             this.Controls.Add(this.txtidproducto);
             this.Controls.Add(this.btncancelar);
             this.Controls.Add(this.btnguardar);
-            this.Controls.Add(this.rbtninactivo);
-            this.Controls.Add(this.rbtnactivo);
-            this.Controls.Add(this.txtprecio_venta);
-            this.Controls.Add(this.txtprecio_compra);
+            this.Controls.Add(this.rbinactivo);
+            this.Controls.Add(this.rbactivo);
+            this.Controls.Add(this.txtprecioventa);
+            this.Controls.Add(this.txtpreciocompra);
             this.Controls.Add(this.txtdescripcion);
             this.Controls.Add(this.txtcodigo);
             this.Controls.Add(this.txtnombre);
@@ -304,7 +305,6 @@
             this.Name = "FrmRegistrarProducto";
             this.Text = "FrmProducto";
             this.Load += new System.EventHandler(this.FrmRegistrarProducto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.txtstock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,10 +315,10 @@
         public System.Windows.Forms.TextBox txtidproducto;
         private System.Windows.Forms.Button btncancelar;
         private System.Windows.Forms.Button btnguardar;
-        public System.Windows.Forms.RadioButton rbtninactivo;
-        public System.Windows.Forms.RadioButton rbtnactivo;
-        public System.Windows.Forms.TextBox txtprecio_venta;
-        public System.Windows.Forms.TextBox txtprecio_compra;
+        public System.Windows.Forms.RadioButton rbinactivo;
+        public System.Windows.Forms.RadioButton rbactivo;
+        public System.Windows.Forms.TextBox txtprecioventa;
+        public System.Windows.Forms.TextBox txtpreciocompra;
         public System.Windows.Forms.TextBox txtdescripcion;
         public System.Windows.Forms.TextBox txtcodigo;
         public System.Windows.Forms.TextBox txtnombre;
@@ -333,9 +333,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.DateTimePicker dtpfecha_vencimiento;
-        private System.Windows.Forms.DateTimePicker dtpfecha_ingreso;
-        private System.Windows.Forms.NumericUpDown txtstock;
-        private System.Windows.Forms.ComboBox txtidcategoria;
+        public System.Windows.Forms.TextBox txtcantidad;
+        public System.Windows.Forms.DateTimePicker dtfechavencimiento;
+        public System.Windows.Forms.DateTimePicker dtfechaingreso;
+        public System.Windows.Forms.ComboBox cboidcategoria;
     }
 }

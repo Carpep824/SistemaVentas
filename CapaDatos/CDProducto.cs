@@ -31,7 +31,7 @@ namespace CapaDatos
             try
             {
                 conexion.ConnectionString = Conexion.Conn;
-                SqlCommand Cmd = new SqlCommand("splistar_producto", conexion);
+                SqlCommand Cmd = new SqlCommand("SPListar_Producto", conexion);
                 Cmd.CommandType = CommandType.StoredProcedure;
 
                 SqlDataAdapter SqlDat = new SqlDataAdapter(Cmd);
@@ -39,8 +39,7 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                resul = null;
-                throw ex;
+                Console.WriteLine(ex.Message);
             }
             finally
             {
@@ -63,7 +62,7 @@ namespace CapaDatos
             {
                 conexion.ConnectionString = Conexion.Conn;
                 conexion.Open();
-                SqlCommand Cmd = new SqlCommand("spguardar_producto", conexion);
+                SqlCommand Cmd = new SqlCommand("SPGuardar_Producto", conexion);
                 Cmd.CommandType = CommandType.StoredProcedure;
 
                 // Configuración correcta del parámetro de salida para el ID generado
@@ -107,7 +106,7 @@ namespace CapaDatos
             {
                 conexion.ConnectionString = Conexion.Conn;
                 conexion.Open();
-                SqlCommand Cmd = new SqlCommand("speditar_producto", conexion);
+                SqlCommand Cmd = new SqlCommand("SPEditar_Producto", conexion);
                 Cmd.CommandType = CommandType.StoredProcedure;
 
                 // IMPORTANTE: Aquí el ID es de entrada para identificar el registro a modificar
@@ -146,7 +145,7 @@ namespace CapaDatos
             {
                 conexion.ConnectionString = Conexion.Conn;
                 conexion.Open();
-                SqlCommand Cmd = new SqlCommand("speliminar_producto", conexion);
+                SqlCommand Cmd = new SqlCommand("SPEliminar_Producto", conexion);
                 Cmd.CommandType = CommandType.StoredProcedure;
 
                 Cmd.Parameters.AddWithValue("@idproducto", prod.Idproducto);
@@ -174,7 +173,7 @@ namespace CapaDatos
             try
             {
                 conexion.ConnectionString = Conexion.Conn;
-                SqlCommand Cmd = new SqlCommand("spbuscar_producto", conexion);
+                SqlCommand Cmd = new SqlCommand("SPBuscar_Producto_Nombre", conexion);
                 Cmd.CommandType = CommandType.StoredProcedure;
                 Cmd.Parameters.AddWithValue("@Desc", prod.Buscar);
                 SqlDataAdapter SqlDat = new SqlDataAdapter(Cmd);
@@ -187,10 +186,7 @@ namespace CapaDatos
             }
             finally
             {
-                if (conexion.State == ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
+                if (conexion.State == ConnectionState.Open) conexion.Close();
             }
             return resul;
         }
@@ -202,7 +198,7 @@ namespace CapaDatos
             try
             {
                 conexion.ConnectionString = Conexion.Conn;
-                SqlCommand Cmd = new SqlCommand("spbuscar_codigo_producto", conexion);
+                SqlCommand Cmd = new SqlCommand("SPBuscar_Producto_Codigo", conexion);
                 Cmd.CommandType = CommandType.StoredProcedure;
                 Cmd.Parameters.AddWithValue("@Codigo", prod.Buscar);
                 SqlDataAdapter SqlDat = new SqlDataAdapter(Cmd);

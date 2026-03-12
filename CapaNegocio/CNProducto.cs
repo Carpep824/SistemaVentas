@@ -13,8 +13,8 @@ namespace CapaNegocio
     {
         public static DataTable Listar()
         {
-            CDProducto datos = new CDProducto();
-            return datos.Listar();
+            CDProducto Datos = new CDProducto();
+            return Datos.Listar();
         }
 
         //Metodo Guardar que llama el metodo Guardar de la clase CDProducto de la CapaDatos

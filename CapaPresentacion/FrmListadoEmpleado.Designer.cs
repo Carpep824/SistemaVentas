@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion
 {
-    partial class FrmListadoCliente
+    partial class FrmListadoEmpleado
     {
         /// <summary>
         /// Required designer variable.
@@ -28,30 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.btneliminar = new System.Windows.Forms.Button();
+            this.btneditar = new System.Windows.Forms.Button();
+            this.btnnuevo = new System.Windows.Forms.Button();
+            this.dlistado = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnsalir = new System.Windows.Forms.Button();
             this.btnbuscar = new System.Windows.Forms.Button();
             this.txtbuscar = new System.Windows.Forms.TextBox();
             this.rbtndni = new System.Windows.Forms.RadioButton();
             this.rbtnnombre = new System.Windows.Forms.RadioButton();
-            this.dlistado = new System.Windows.Forms.DataGridView();
-            this.btnnuevo = new System.Windows.Forms.Button();
-            this.btneditar = new System.Windows.Forms.Button();
-            this.btneliminar = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dlistado)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // btneliminar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(29, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Clientes";
+            this.btneliminar.Location = new System.Drawing.Point(699, 393);
+            this.btneliminar.Name = "btneliminar";
+            this.btneliminar.Size = new System.Drawing.Size(75, 23);
+            this.btneliminar.TabIndex = 11;
+            this.btneliminar.Text = "Eliminar";
+            this.btneliminar.UseVisualStyleBackColor = true;
+            this.btneliminar.Click += new System.EventHandler(this.btneliminar_Click_1);
+            // 
+            // btneditar
+            // 
+            this.btneditar.Location = new System.Drawing.Point(602, 393);
+            this.btneditar.Name = "btneditar";
+            this.btneditar.Size = new System.Drawing.Size(75, 23);
+            this.btneditar.TabIndex = 10;
+            this.btneditar.Text = "Editar";
+            this.btneditar.UseVisualStyleBackColor = true;
+            this.btneditar.Click += new System.EventHandler(this.btneditar_Click_1);
+            // 
+            // btnnuevo
+            // 
+            this.btnnuevo.Location = new System.Drawing.Point(511, 393);
+            this.btnnuevo.Name = "btnnuevo";
+            this.btnnuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnnuevo.TabIndex = 9;
+            this.btnnuevo.Text = "Nuevo";
+            this.btnnuevo.UseVisualStyleBackColor = true;
+            this.btnnuevo.Click += new System.EventHandler(this.btnnuevo_Click_1);
+            // 
+            // dlistado
+            // 
+            this.dlistado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dlistado.Location = new System.Drawing.Point(27, 160);
+            this.dlistado.Name = "dlistado";
+            this.dlistado.RowHeadersWidth = 51;
+            this.dlistado.RowTemplate.Height = 24;
+            this.dlistado.Size = new System.Drawing.Size(747, 227);
+            this.dlistado.TabIndex = 8;
             // 
             // groupBox1
             // 
@@ -60,13 +90,12 @@
             this.groupBox1.Controls.Add(this.txtbuscar);
             this.groupBox1.Controls.Add(this.rbtndni);
             this.groupBox1.Controls.Add(this.rbtnnombre);
-            this.groupBox1.Location = new System.Drawing.Point(27, 96);
+            this.groupBox1.Location = new System.Drawing.Point(27, 82);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(747, 71);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Criterio de búsqueda";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnsalir
             // 
@@ -76,7 +105,7 @@
             this.btnsalir.TabIndex = 4;
             this.btnsalir.Text = "Salir";
             this.btnsalir.UseVisualStyleBackColor = true;
-            this.btnsalir.Click += new System.EventHandler(this.button2_Click);
+            this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click_1);
             // 
             // btnbuscar
             // 
@@ -86,7 +115,7 @@
             this.btnbuscar.TabIndex = 3;
             this.btnbuscar.Text = "Buscar";
             this.btnbuscar.UseVisualStyleBackColor = true;
-            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
+            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click_1);
             // 
             // txtbuscar
             // 
@@ -94,7 +123,6 @@
             this.txtbuscar.Name = "txtbuscar";
             this.txtbuscar.Size = new System.Drawing.Size(327, 22);
             this.txtbuscar.TabIndex = 2;
-            this.txtbuscar.TextChanged += new System.EventHandler(this.txtbuscar_TextChanged);
             // 
             // rbtndni
             // 
@@ -117,49 +145,18 @@
             this.rbtnnombre.TabStop = true;
             this.rbtnnombre.Text = "Nombre";
             this.rbtnnombre.UseVisualStyleBackColor = true;
-            this.rbtnnombre.CheckedChanged += new System.EventHandler(this.rbtnnombre_CheckedChanged);
             // 
-            // dlistado
+            // label1
             // 
-            this.dlistado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dlistado.Location = new System.Drawing.Point(27, 174);
-            this.dlistado.Name = "dlistado";
-            this.dlistado.RowHeadersWidth = 51;
-            this.dlistado.RowTemplate.Height = 24;
-            this.dlistado.Size = new System.Drawing.Size(747, 227);
-            this.dlistado.TabIndex = 2;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(29, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 25);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Empleados";
             // 
-            // btnnuevo
-            // 
-            this.btnnuevo.Location = new System.Drawing.Point(511, 407);
-            this.btnnuevo.Name = "btnnuevo";
-            this.btnnuevo.Size = new System.Drawing.Size(75, 23);
-            this.btnnuevo.TabIndex = 3;
-            this.btnnuevo.Text = "Nuevo";
-            this.btnnuevo.UseVisualStyleBackColor = true;
-            this.btnnuevo.Click += new System.EventHandler(this.btnnuevo_Click);
-            // 
-            // btneditar
-            // 
-            this.btneditar.Location = new System.Drawing.Point(602, 407);
-            this.btneditar.Name = "btneditar";
-            this.btneditar.Size = new System.Drawing.Size(75, 23);
-            this.btneditar.TabIndex = 4;
-            this.btneditar.Text = "Editar";
-            this.btneditar.UseVisualStyleBackColor = true;
-            this.btneditar.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // btneliminar
-            // 
-            this.btneliminar.Location = new System.Drawing.Point(699, 407);
-            this.btneliminar.Name = "btneliminar";
-            this.btneliminar.Size = new System.Drawing.Size(75, 23);
-            this.btneliminar.TabIndex = 5;
-            this.btneliminar.Text = "Eliminar";
-            this.btneliminar.UseVisualStyleBackColor = true;
-            this.btneliminar.Click += new System.EventHandler(this.btneliminar_Click);
-            // 
-            // FrmListadoCliente
+            // FrmListadoEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -170,13 +167,12 @@
             this.Controls.Add(this.dlistado);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmListadoCliente";
-            this.Text = "FrmListadoCliente";
-            this.Load += new System.EventHandler(this.FrmListadoCliente_Load);
+            this.Name = "FrmListadoEmpleado";
+            this.Text = "FrmListarEmpleado";
+            this.Load += new System.EventHandler(this.FrmListadoEmpleado_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dlistado)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dlistado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,16 +180,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btneliminar;
+        private System.Windows.Forms.Button btneditar;
+        private System.Windows.Forms.Button btnnuevo;
+        private System.Windows.Forms.DataGridView dlistado;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnsalir;
         private System.Windows.Forms.Button btnbuscar;
         private System.Windows.Forms.TextBox txtbuscar;
         private System.Windows.Forms.RadioButton rbtndni;
         private System.Windows.Forms.RadioButton rbtnnombre;
-        private System.Windows.Forms.DataGridView dlistado;
-        private System.Windows.Forms.Button btnnuevo;
-        private System.Windows.Forms.Button btneditar;
-        private System.Windows.Forms.Button btneliminar;
+        private System.Windows.Forms.Label label1;
     }
 }

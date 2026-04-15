@@ -143,5 +143,15 @@ namespace CapaPresentacion
                 MessageBox.Show("Seleccione un criterio de búsqueda", "Sistema de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void rbtnnombre_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtbuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
